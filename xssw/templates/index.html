@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>XSS HomePage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <script type="text/javascript">
+    	function myFunction() {
+   			 alert("I am an alert box!");
+   			}
+    </script>
+  </head>
+  <body>
+      <div class="box">
+         <div class="container-fluid">
+          <center>
+          <h1 style="font-family: Courier New;color:MediumSeaGreen;"><b>An Effective Method to Detect and Prevent XSS</b></h1>
+          
+        </center>
+      <div class="row">
+        <div class="col-sm-2" ></div>
+        <div class="col-sm-8" style="background-color:lavenderblush;">
+          
+        
+          {% block body%}
+          
+           
+            <form method="get">
+              {% csrf_token %}
+              {{ form.as_p}}
+              <button type="submit" class="btn btn-success">Detect XSS</button>
+            </form>
+            <h3><b>URL</b> = {{ texts }}</h3>
+            <h3><b>Availability Status</b> = {{ av }}</h3>
+            <h3><b>Payload count</b> = {{ count }}</h3>
+        	<h3><b>Parameters Found</b> = {{ fpar }}</h3>
+        	<h3 class="detected"><b>Result</b> = {{ vul }}</h3>
+        	<h3><b>Successfull Payload</b> = {{ payl }}</h3>
+        	
+
+        </div>
+        {% endblock%}
+        <div class="col-sm-2" ></div>
+        </div>
+      </div>
+    </div>
+    <center>
+     <div class="credits">
+            <button class="btn btn-success" data-target="#developer" data-toggle="modal"></button>
+        </div>
+        <div class="modal fade" id="developer" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <!-- Modal content no 1-->
+          <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title text-center form-title">XSS Ninja</h4>
+          </div>
+          <div class="modal-body padtrbl">
+		  <center>
+			<figure>
+		    	<h5></h5>
+              
+              <figcaption>
+                  <br>
+                  <p style="text-align: justify;"><font color="#a42e31">Our XSS Ninja is an efficient method to detect and prevent XSS ( Cross Site Scripting ).Initially we check for XSS so we will be getting a url then extracting available parameters from the url and bruteforcing them with our tested successfull Wordlist. This Detection method works well and giving good results as we expected. Here after Injecting a payload to a parameter we read source code for any possible redirection or any malicious things happened. if happened we intercept that request and we use our efficient filtering method to Prevent XSS attack </font></p>
+              </figcaption>
+             </figure>
+			</center>
+          </div>
+        </div>
+		  </div>
+        </div>
+    </center><br><br>
+  </body>
+</html>
